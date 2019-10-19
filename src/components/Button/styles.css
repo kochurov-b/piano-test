@@ -1,0 +1,26 @@
+button {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19px;
+  cursor: pointer;
+  transition: 0.12s;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  color: #e4e4e4;
+}
+
+.button--search {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  margin-left: 10px;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #37beb0;
+  border: 0;
+  border-radius: 25px;
+  padding: 8px 20px;
+}
