@@ -26,7 +26,6 @@ export default () => {
       {toResultSearch && <Redirect to="/result" />}
 
       <div className="search">
-        <h1>Search by Stack Overflow</h1>
         <Form className="form--search" onSubmit={handleSubmitForm}>
           <Input
             type="text"
