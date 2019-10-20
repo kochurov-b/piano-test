@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Button from "../Button";
+import Notification from "../Notification";
 
 import "./styles.css";
 
@@ -12,7 +13,7 @@ export default () => {
       <div className="search-result">
         <h2>Search results</h2>
         {loading ? (
-          <span className="preloader">Loading...</span>
+          <Notification name="Loading ..." className="notification--loading" />
         ) : (
           <div className="search-result__table">
             <table className="table">
@@ -64,7 +65,25 @@ export default () => {
             </table>
           </div>
         )}
-        {error && <span>error</span>}
+
+        {error ? (
+          <Notification
+            name="Oops, something went wrong!"
+            linkName="Please try again"
+            linkTo="/"
+            className="notification--error"
+          />
+        ) : (
+          !loading &&
+          result.length === 0 && (
+            <Notification
+              name="No results were found for your request!"
+              linkName="Please try again"
+              linkTo="/"
+              className="notification--notice"
+            />
+          )
+        )}
       </div>
     </>
   );
