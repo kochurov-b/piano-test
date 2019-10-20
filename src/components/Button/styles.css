@@ -33,9 +33,10 @@ button:disabled {
   border: 0;
   padding: 0;
   background-color: transparent;
+  transition: 0.12s;
 }
 
 .button--author:hover,
 .button--tag:hover {
-  text-decoration: underline;
+  color: #37beb0;
 }
