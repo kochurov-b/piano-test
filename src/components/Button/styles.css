@@ -1,7 +1,4 @@
 button {
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 19px;
   cursor: pointer;
   transition: 0.12s;
 }
@@ -19,8 +16,26 @@ button:disabled {
   margin-left: 10px;
   text-transform: uppercase;
   color: #fff;
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 600;
   background-color: #37beb0;
   border: 0;
   border-radius: 25px;
   padding: 8px 20px;
+}
+
+.button--author,
+.button--tag {
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: 0.2px;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+.button--author:hover,
+.button--tag:hover {
+  text-decoration: underline;
 }
