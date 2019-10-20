@@ -3,6 +3,7 @@ import { takeLatest, call, select, put } from "redux-saga/effects";
 import { searchConstants } from "../constants/search";
 import { fetchData } from "./helpers";
 import { getSearchData } from "../actions/search";
+import config from "../../config";
 
 export function* fetchSearchData() {
   try {
@@ -10,6 +11,7 @@ export function* fetchSearchData() {
       search: { query }
     } = yield select();
     const { items } = yield call(fetchData, {
+      actionPath: config.SEARCH_PATH,
       query
     });
     yield put(getSearchData.success(items));
