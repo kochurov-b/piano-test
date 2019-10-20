@@ -1,0 +1,26 @@
+.notification {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.notification a {
+  margin-left: 5px;
+}
+
+.notification--loading {
+  background-color: #c9eaef;
+}
+
+.notification--notice {
+  background-color: #f9e3c0;
+}
+
+.notification--error {
+  background-color: #f98a88;
+}
