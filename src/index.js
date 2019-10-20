@@ -1,16 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import store from "./store";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
+import Search from "./components/Search";
+import SearchResult from "./components/SearchResult";
 
 import "./index.css";
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App>
+        <Switch>
+          <Route exact path="/" component={Search} />
+          <Route path="/result" component={SearchResult} />
+        </Switch>
+      </App>
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );
