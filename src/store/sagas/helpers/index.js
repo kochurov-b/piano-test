@@ -1,16 +1,16 @@
 import config from "../../../config";
 
 export const fetchData = async ({
+  actionPath,
   query,
   order = "desc",
   sort = "activity",
   site = "stackoverflow",
-  filter = "default"
+  filter = "!17vW0QPGOaUc(Oxq_4Jb7Cu8c0S_BUDx0c9lIuSux*nq59"
 }) => {
   try {
     const {
       API_PATH,
-      SEARCH_PATH,
       INTITLE_PARAMS,
       ORDER_PARAMS,
       SORT_PARAMS,
@@ -19,7 +19,9 @@ export const fetchData = async ({
     } = config;
 
     const response = await fetch(
-      `${API_PATH}${SEARCH_PATH}?${ORDER_PARAMS}${order}&${SORT_PARAMS}${sort}&${INTITLE_PARAMS}${query}&${SITE_PARAMS}${site}&${FILTER_PARAMS}${filter}`
+      `${API_PATH}${actionPath}?${ORDER_PARAMS}${order}&${SORT_PARAMS}${sort}&${SITE_PARAMS}${site}&${FILTER_PARAMS}${filter}&${
+        query ? `&${INTITLE_PARAMS}${query}` : ""
+      }`
     );
 
     return response.json();
