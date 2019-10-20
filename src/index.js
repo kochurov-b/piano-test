@@ -8,6 +8,7 @@ import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import Search from "./components/Search";
 import SearchResult from "./components/SearchResult";
+import DetailedInfo from "./components/DetailedInfo/DetailedInfo";
 
 import "./index.css";
 
@@ -18,6 +19,7 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" component={Search} />
           <Route path="/result" component={SearchResult} />
+          <Route path="/answers/:id" component={DetailedInfo} />
         </Switch>
       </App>
     </BrowserRouter>

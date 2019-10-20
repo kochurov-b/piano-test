@@ -1,0 +1,11 @@
+.answers__item {
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
+.answers__item:last-child {
+  margin-bottom: 0;
+}
