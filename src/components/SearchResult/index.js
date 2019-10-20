@@ -40,10 +40,10 @@ export default () => {
                         </Button>{" "}
                       </td>
                       <td className="table__td">
-                        <Link to={`/question/${question_id}`}>{title}</Link>
+                        <Link to={`/answers/${question_id}`}>{title}</Link>
                       </td>
                       <td className="table__td">
-                        <Link to={`/question/${question_id}`}>
+                        <Link to={`/answers/${question_id}`}>
                           {answer_count}
                         </Link>
                       </td>
