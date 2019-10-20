@@ -64,7 +64,7 @@ export default () => {
             </table>
           </div>
         )}
-        {error || (result.length === 0 && <span>error</span>)}
+        {error && <span>error</span>}
       </div>
     </>
   );
