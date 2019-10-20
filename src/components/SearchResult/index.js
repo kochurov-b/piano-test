@@ -10,6 +10,7 @@ export default () => {
   return (
     <>
       <div className="search-result">
+        <h2>Search results</h2>
         {loading ? (
           <span className="preloader">Loading...</span>
         ) : (
