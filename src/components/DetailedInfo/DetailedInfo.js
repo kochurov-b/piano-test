@@ -2,6 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
+import Notification from "../Notification";
+
 import "./styles.css";
 
 export default () => {
@@ -25,6 +27,14 @@ export default () => {
           );
         })}
       </ul>
+      {answers.length === 0 && (
+        <Notification
+          name="No results were found for your request!"
+          linkName="Try a different question!"
+          linkTo="/answers"
+          className="notification--notice"
+        />
+      )}
     </div>
   );
 };
