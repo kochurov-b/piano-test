@@ -6,7 +6,7 @@ import Button from "../Button";
 import "./styles.css";
 
 export default () => {
-  const { loading, result = [] } = useSelector(state => state.search);
+  const { loading, error, result = [] } = useSelector(state => state.search);
   return (
     <>
       <div className="search-result">
@@ -63,6 +63,7 @@ export default () => {
             </table>
           </div>
         )}
+        {error || (result.length === 0 && <span>error</span>)}
       </div>
     </>
   );
