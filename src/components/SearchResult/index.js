@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Button from "../Button";
 
 import "./styles.css";
 
 export default () => {
-  const { loading, result } = useSelector(state => state.search);
+  const { loading, result = [] } = useSelector(state => state.search);
   return (
     <>
       <div className="search-result">
@@ -38,8 +39,14 @@ export default () => {
                           {display_name}
                         </Button>{" "}
                       </td>
-                      <td className="table__td">{title}</td>
-                      <td className="table__td">{answer_count}</td>
+                      <td className="table__td">
+                        <Link to={`/question/${question_id}`}>{title}</Link>
+                      </td>
+                      <td className="table__td">
+                        <Link to={`/question/${question_id}`}>
+                          {answer_count}
+                        </Link>
+                      </td>
                       <td className="table__td">
                         {tags
                           .map(tag => (
