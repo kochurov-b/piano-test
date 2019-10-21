@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
 
@@ -11,6 +11,10 @@ export default () => {
     state: { fromLocation }
   } = useLocation();
   const { id } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { answers = [], title } = useSelector(state => {
     const { search, faqs, topQuestions } = state;
