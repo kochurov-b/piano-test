@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import Button from "../Button";
 import { getTopFaqs } from "../../store/actions/faqs";
+import { getTopQuestions } from "../../store/actions/topQuestions";
 import BootProcess from "../BootProcess";
 import Modal from "../Modal";
 import Table from "../Table";
@@ -13,10 +14,20 @@ import "./styles.css";
 
 export default ({ bodyData, fromLocation }) => {
   const [isOpenPanel, setIsOpenPanel] = useState(false);
-  const { result = [] } = useSelector(state => state.faqs);
+  const [fromLocationName, setFromLocationName] = useState("");
+
+  const { result = [] } = useSelector(state => state.topQuestions);
+
   const dispatch = useDispatch();
 
+  const handleAuthor = id => {
+    setFromLocationName("topQuestion");
+    setIsOpenPanel(true);
+    dispatch(getTopQuestions.request(id));
+  };
+
   const handleTag = event => {
+    setFromLocationName("faqs");
     setIsOpenPanel(true);
     dispatch(getTopFaqs.request(event.target.innerText));
   };
@@ -35,7 +46,7 @@ export default ({ bodyData, fromLocation }) => {
         <tbody>
           {bodyData.map(item => {
             const {
-              owner: { display_name },
+              owner: { display_name, user_id },
               question_id,
               title,
               answer_count,
@@ -44,7 +55,12 @@ export default ({ bodyData, fromLocation }) => {
             return (
               <tr key={question_id.toString()} className="table__tr">
                 <td>
-                  <Button className="button--author">{display_name}</Button>
+                  <Button
+                    onClick={() => handleAuthor(user_id)}
+                    className="button--author"
+                  >
+                    {display_name}
+                  </Button>
                 </td>
                 <td>
                   <Link
@@ -78,10 +94,12 @@ export default ({ bodyData, fromLocation }) => {
         </tbody>
       </table>
       {isOpenPanel && (
-        <BootProcess fromLocation="faqs">
+        <BootProcess fromLocation={fromLocationName}>
           {result.length === 0 ? (
             <Notification
-              name="No results were found for your request! Try selecting a different tag."
+              name={`No results were found for your request! Try selecting a different ${
+                fromLocationName === "faqs" ? "tag" : "author"
+              }.`}
               className="notification--notice"
             />
           ) : (
