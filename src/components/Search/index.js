@@ -14,6 +14,7 @@ export default () => {
   const [inputSearch, setInputSearch] = useState("");
   const [toResultSearch, setToResultSearch] = useState(false);
   const dispatch = useDispatch();
+  localStorage.removeItem("state");
 
   const handleSubmitForm = event => {
     event.preventDefault();
