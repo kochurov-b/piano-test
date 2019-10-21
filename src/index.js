@@ -8,7 +8,7 @@ import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import Search from "./components/Search";
 import SearchResult from "./components/SearchResult";
-import DetailedInfo from "./components/DetailedInfo/DetailedInfo";
+import DetailedInfo from "./components/DetailedInfo";
 
 import "./index.css";
 

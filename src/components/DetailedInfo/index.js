@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useHistory } from "react-router-dom";
 
 import Notification from "../Notification";
 
@@ -11,6 +11,8 @@ export default () => {
     state: { fromLocation }
   } = useLocation();
   const { id } = useParams();
+  const test = useHistory();
+  console.log(test);
 
   const { answers = [], title } = useSelector(state => {
     const { search, faqs, topQuestions } = state;
