@@ -16,7 +16,9 @@ export default ({ bodyData, fromLocation }) => {
   const [isOpenPanel, setIsOpenPanel] = useState(false);
   const [fromLocationName, setFromLocationName] = useState("");
 
-  const { result = [] } = useSelector(state => state.topQuestions);
+  const { result = [] } = useSelector(state =>
+    fromLocationName === "topQuestion" ? state.topQuestions : state.faqs
+  );
 
   const dispatch = useDispatch();
 
