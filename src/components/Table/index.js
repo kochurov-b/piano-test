@@ -52,7 +52,8 @@ export default ({ bodyData, fromLocation }) => {
               question_id,
               title,
               answer_count,
-              tags
+              tags,
+              answers
             } = item;
             return (
               <tr key={question_id.toString()} className="table__tr">
@@ -74,6 +75,7 @@ export default ({ bodyData, fromLocation }) => {
                       pathname: `/result/answers/${question_id}`,
                       state: { fromLocation }
                     }}
+                    onClick={event => !answers && event.preventDefault()}
                   >
                     {title}
                   </Link>
@@ -81,7 +83,7 @@ export default ({ bodyData, fromLocation }) => {
                 <td>
                   <Link
                     to={{
-                      pathname: `/result/answers/${question_id}`,
+                      pathname: `/question/${question_id}`,
                       state: { fromLocation }
                     }}
                   >
