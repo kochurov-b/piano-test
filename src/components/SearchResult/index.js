@@ -1,13 +1,25 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import Notification from "../Notification";
 import Table from "../Table";
 
 import "./styles.css";
+import { useInfiniteScroll } from "../../hooks";
+import { getSearchData } from "../../store/actions/search";
 
 export default () => {
-  const { result = [] } = useSelector(state => state.search);
+  const { result = [], has_more } = useSelector(state => state.search);
+  const { count, loading } = useInfiniteScroll(has_more);
+  const dispatch = useDispatch();
+  const { query } = useParams();
+
+  useEffect(() => {
+    loading &&
+      has_more &&
+      dispatch(getSearchData.request({ query, page: count }));
+  });
 
   return (
     <>
