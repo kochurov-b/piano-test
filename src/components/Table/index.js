@@ -1,19 +1,23 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import Modal from "../Modal";
 import Button from "../Button";
 import { getTopFaqs } from "../../store/actions/faqs";
+import BootProcess from "../BootProcess";
+import Modal from "../Modal";
+import Table from "../Table";
+import Notification from "../Notification";
 
 import "./styles.css";
 
 export default ({ bodyData, fromLocation }) => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenPanel, setIsOpenPanel] = useState(false);
+  const { result = [] } = useSelector(state => state.faqs);
   const dispatch = useDispatch();
 
   const handleTag = event => {
-    setIsOpenModal(true);
+    setIsOpenPanel(true);
     dispatch(getTopFaqs.request(event.target.innerText));
   };
 
@@ -73,7 +77,21 @@ export default ({ bodyData, fromLocation }) => {
           })}
         </tbody>
       </table>
-      {isOpenModal && <Modal modalClose={() => setIsOpenModal(false)} />}
+      {isOpenPanel && (
+        <BootProcess fromLocation="faqs">
+          {result.length === 0 ? (
+            <Notification
+              name="No results were found for your request! Try selecting a different tag."
+              className="notification--notice"
+            />
+          ) : (
+            <Modal modalClose={() => setIsOpenPanel(false)}>
+              <h2>Popular questions</h2>
+              <Table bodyData={result} fromLocation="faqs" />
+            </Modal>
+          )}
+        </BootProcess>
+      )}
     </>
   );
 };
