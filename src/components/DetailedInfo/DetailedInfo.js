@@ -1,16 +1,22 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 import Notification from "../Notification";
 
 import "./styles.css";
 
 export default () => {
+  const {
+    state: { fromLocation }
+  } = useLocation();
   const { id } = useParams();
-  const { answers = [], title } = useSelector(state =>
-    state.search.result.find(item => item.question_id === +id)
-  );
+
+  const { answers = [], title } = useSelector(state => {
+    const { search, faqs } = state;
+    const findInArray = fromLocation === "search" ? search.result : faqs.result;
+    return findInArray.find(item => item.question_id === +id);
+  });
 
   return (
     <div className="answers">
@@ -27,6 +33,7 @@ export default () => {
           );
         })}
       </ul>
+
       {answers.length === 0 && (
         <Notification
           name="No results were found for your request!"
