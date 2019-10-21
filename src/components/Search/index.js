@@ -6,7 +6,7 @@ import Input from "../FormElements/Input";
 import Button from "../Button";
 import Form from "../Form";
 import BootProcess from "../BootProcess";
-import { getSearchData } from "../../store/actions/search";
+import { getSearchData, searchQuery } from "../../store/actions/search";
 
 import "./styles.css";
 
@@ -14,11 +14,12 @@ export default () => {
   const [inputSearch, setInputSearch] = useState("");
   const [toResultSearch, setToResultSearch] = useState(false);
   const dispatch = useDispatch();
-  localStorage.removeItem("state");
 
   const handleSubmitForm = event => {
     event.preventDefault();
+    localStorage.removeItem("state");
     setToResultSearch(true);
+    dispatch(searchQuery());
     dispatch(getSearchData.request({ query: inputSearch }));
   };
 
