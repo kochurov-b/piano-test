@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import Input from "../FormElements/Input";
 import Button from "../Button";
 import Form from "../Form";
+import BootProcess from "../BootProcess";
 import { getSearchData, setSearchQuery } from "../../store/actions/search";
 
 import "./styles.css";
@@ -23,7 +24,11 @@ export default () => {
 
   return (
     <>
-      {toResultSearch && <Redirect to="/result" />}
+      {toResultSearch && (
+        <BootProcess fromLocation="search">
+          <Redirect to="/result" />
+        </BootProcess>
+      )}
 
       <div className="search">
         <Form className="form--search" onSubmit={handleSubmitForm}>
