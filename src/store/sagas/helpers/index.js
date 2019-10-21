@@ -6,7 +6,7 @@ export const fetchData = async ({
   order = "desc",
   sort = "activity",
   site = "stackoverflow",
-  filter = "!17vW0QPGOaUc(Oxq_4Jb7Cu8c0S_BUDx0c9lIuSux*nq59"
+  filter = "!17vW0QPGOaUc(Oxq_4Jb7Cu8c0S_BUDx0c9lIuSu3uzgeP"
 }) => {
   try {
     const {
