@@ -31,6 +31,7 @@ a:hover {
 
 pre {
   background-color: #eff0f1;
+  overflow-y: auto;
 }
 
 code {
