@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 
-import rootReducer from "./reducers";
+import { rootReducer } from "./reducers";
 import rootSaga from "./sagas";
 import { saveState, loadState } from "../utils/localStorage";
 import { debounce } from "../utils/debounce";
