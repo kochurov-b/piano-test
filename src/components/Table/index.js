@@ -75,7 +75,7 @@ export default ({ bodyData, fromLocation }) => {
                       pathname: `/question/${question_id}`,
                       state: { fromLocation }
                     }}
-                    className={!answers && "disabled-link"}
+                    className={!answers ? "disabled-link" : undefined}
                     onClick={event => !answers && event.preventDefault()}
                   >
                     {title}
