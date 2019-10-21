@@ -25,7 +25,7 @@ export default () => {
     <>
       {toResultSearch && (
         <BootProcess fromLocation="search">
-          <Redirect to={`/result/${inputSearch}`} />
+          <Redirect to={`/search/q=${inputSearch}`} />
         </BootProcess>
       )}
 
