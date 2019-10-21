@@ -71,7 +71,7 @@ export default ({ bodyData, fromLocation }) => {
                 <td>
                   <Link
                     to={{
-                      pathname: `/answers/${question_id}`,
+                      pathname: `/result/answers/${question_id}`,
                       state: { fromLocation }
                     }}
                   >
@@ -81,7 +81,7 @@ export default ({ bodyData, fromLocation }) => {
                 <td>
                   <Link
                     to={{
-                      pathname: `/answers/${question_id}`,
+                      pathname: `/result/answers/${question_id}`,
                       state: { fromLocation }
                     }}
                   >

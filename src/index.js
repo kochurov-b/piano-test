@@ -19,7 +19,7 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" component={Search} />
           <Route path="/result/:query" component={SearchResult} />
-          <Route path="/answers/:id" component={DetailedInfo} />
+          <Route path="/result/answers/:id" component={DetailedInfo} />
         </Switch>
       </App>
     </BrowserRouter>
