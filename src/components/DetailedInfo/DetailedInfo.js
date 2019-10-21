@@ -13,8 +13,14 @@ export default () => {
   const { id } = useParams();
 
   const { answers = [], title } = useSelector(state => {
-    const { search, faqs } = state;
-    const findInArray = fromLocation === "search" ? search.result : faqs.result;
+    const { search, faqs, topQuestions } = state;
+    const findInArray =
+      fromLocation === "search"
+        ? search.result
+        : fromLocation === "faqs"
+        ? faqs.result
+        : topQuestions.result;
+
     return findInArray.find(item => item.question_id === +id);
   });
 
