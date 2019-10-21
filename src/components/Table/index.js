@@ -72,7 +72,7 @@ export default ({ bodyData, fromLocation }) => {
                 <td>
                   <Link
                     to={{
-                      pathname: `/result/answers/${question_id}`,
+                      pathname: `/question/${question_id}`,
                       state: { fromLocation }
                     }}
                     onClick={event => !answers && event.preventDefault()}
