@@ -4,6 +4,8 @@ export default {
   ANSWERS_PATH: "/answers",
   TAGS_PATH: "/tags",
   FAQ_PATH: "/faq",
+  USERS_PATH: "/users",
+  QUESTIONS_PATH: "/questions",
   INTITLE_PARAMS: "intitle=",
   ORDER_PARAMS: "order=",
   SORT_PARAMS: "sort=",
