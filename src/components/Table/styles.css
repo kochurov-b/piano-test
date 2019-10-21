@@ -17,3 +17,18 @@ table td {
   padding: 15px;
   border-top: 1px solid rgb(235, 235, 235);
 }
+
+.table__td-author {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 150px;
+}
+
+.table__td-answers-count {
+  width: 90px;
+  text-align: center;
+}
+
+.table__td-tags {
+  width: 200px;
+}

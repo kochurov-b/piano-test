@@ -57,7 +57,7 @@ export default ({ bodyData, fromLocation }) => {
             } = item;
             return (
               <tr key={question_id.toString()} className="table__tr">
-                <td>
+                <td className="table__td-author">
                   {fromLocation !== "search" ? (
                     <span>{display_name.trim()}</span>
                   ) : (
@@ -80,7 +80,7 @@ export default ({ bodyData, fromLocation }) => {
                     {title}
                   </Link>
                 </td>
-                <td>
+                <td className="table__td-answers-count">
                   <Link
                     to={{
                       pathname: `/question/${question_id}`,
@@ -90,7 +90,7 @@ export default ({ bodyData, fromLocation }) => {
                     {answer_count}
                   </Link>
                 </td>
-                <td>
+                <td className="table__td-tags">
                   {tags
                     .map(tag =>
                       fromLocation !== "search" ? (
