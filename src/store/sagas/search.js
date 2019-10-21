@@ -1,18 +1,15 @@
-import { takeLatest, call, select, put } from "redux-saga/effects";
+import { takeLatest, call, put } from "redux-saga/effects";
 
 import { searchConstants } from "../constants/search";
 import { fetchData } from "./helpers";
 import { getSearchData } from "../actions/search";
 import config from "../../config";
 
-export function* fetchSearchData() {
+export function* fetchSearchData(action) {
   try {
-    const {
-      search: { query }
-    } = yield select();
     const { items } = yield call(fetchData, {
       actionPath: config.SEARCH_PATH,
-      query
+      query: action.payload
     });
     yield put(getSearchData.success(items));
   } catch (error) {

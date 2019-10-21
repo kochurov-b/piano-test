@@ -6,7 +6,7 @@ import Input from "../FormElements/Input";
 import Button from "../Button";
 import Form from "../Form";
 import BootProcess from "../BootProcess";
-import { getSearchData, setSearchQuery } from "../../store/actions/search";
+import { getSearchData } from "../../store/actions/search";
 
 import "./styles.css";
 
@@ -18,8 +18,7 @@ export default () => {
   const handleSubmitForm = event => {
     event.preventDefault();
     setToResultSearch(true);
-    dispatch(setSearchQuery(inputSearch));
-    dispatch(getSearchData.request());
+    dispatch(getSearchData.request(inputSearch));
   };
 
   return (

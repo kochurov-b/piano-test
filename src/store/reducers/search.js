@@ -14,13 +14,6 @@ export default (state = { loading: false }, action) => {
       return { ...state, loading: false, error: action.payload };
     }
 
-    case searchConstants.SET_SEARCH_QUERY: {
-      return {
-        ...state,
-        query: action.payload
-      };
-    }
-
     default:
       return { ...state };
   }
