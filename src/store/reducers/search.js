@@ -1,13 +1,19 @@
 import { searchConstants } from "../constants/search";
 
-export default (state = { loading: false }, action) => {
+export default (state = { loading: false, result: [] }, action) => {
   switch (action.type) {
     case searchConstants.GET_SEARCH_DATA.REQUEST: {
       return { ...state, loading: true };
     }
 
     case searchConstants.GET_SEARCH_DATA.SUCCESS: {
-      return { ...state, loading: false, result: action.payload };
+      const { items, has_more } = action.payload;
+      return {
+        ...state,
+        loading: false,
+        has_more,
+        result: [...state.result, ...items]
+      };
     }
 
     case searchConstants.GET_SEARCH_DATA.FAILURE: {
