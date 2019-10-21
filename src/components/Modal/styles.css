@@ -25,6 +25,9 @@
   width: 1020px;
   height: 500px;
   background-color: #fff;
-  z-index: 9999;
+  padding: 15px;
+  border-radius: 5px;
+  overflow-y: auto;
   cursor: default;
+  z-index: 9999;
 }
