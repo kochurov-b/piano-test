@@ -5,7 +5,11 @@ import Notification from "../Notification";
 
 export default ({ children, fromLocation }) => {
   const { loading, error } = useSelector(state =>
-    fromLocation === "search" ? state.search : state.faqs
+    fromLocation === "search"
+      ? state.search
+      : fromLocation === "faqs"
+      ? state.faqs
+      : state.topQuestions
   );
 
   return error ? (
