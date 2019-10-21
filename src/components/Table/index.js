@@ -73,7 +73,14 @@ export default ({ bodyData, fromLocation }) => {
                   </Link>
                 </td>
                 <td>
-                  <Link to={`/answers/${question_id}`}>{answer_count}</Link>
+                  <Link
+                    to={{
+                      pathname: `/answers/${question_id}`,
+                      state: { fromLocation }
+                    }}
+                  >
+                    {answer_count}
+                  </Link>
                 </td>
                 <td>
                   {tags
@@ -93,6 +100,7 @@ export default ({ bodyData, fromLocation }) => {
           })}
         </tbody>
       </table>
+
       {isOpenPanel && (
         <BootProcess fromLocation={fromLocationName}>
           {result.length === 0 ? (
@@ -105,7 +113,7 @@ export default ({ bodyData, fromLocation }) => {
           ) : (
             <Modal modalClose={() => setIsOpenPanel(false)}>
               <h2>Popular questions</h2>
-              <Table bodyData={result} fromLocation="faqs" />
+              <Table bodyData={result} fromLocation={fromLocationName} />
             </Modal>
           )}
         </BootProcess>
