@@ -10,5 +10,6 @@ export default {
   ORDER_PARAMS: "order=",
   SORT_PARAMS: "sort=",
   SITE_PARAMS: "site=",
-  FILTER_PARAMS: "filter="
+  FILTER_PARAMS: "filter=",
+  PAGE_NUMBER: "page="
 };
