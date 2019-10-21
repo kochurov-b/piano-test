@@ -32,3 +32,12 @@ table td {
 .table__td-tags {
   width: 200px;
 }
+
+.disabled-link {
+  color: #f98a88;
+  cursor: default;
+}
+
+.disabled-link:hover {
+  text-decoration: none;
+}
