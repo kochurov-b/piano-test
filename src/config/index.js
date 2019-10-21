@@ -11,5 +11,6 @@ export default {
   SORT_PARAMS: "sort=",
   SITE_PARAMS: "site=",
   FILTER_PARAMS: "filter=",
-  PAGE_NUMBER: "page="
+  PAGE_NUMBER: "page=",
+  PAGESIZE_PARAM: "pagesize="
 };
