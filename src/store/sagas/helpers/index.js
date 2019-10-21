@@ -6,7 +6,8 @@ export const fetchData = async ({
   order = "desc",
   sort = "activity",
   site = "stackoverflow",
-  filter = "!17vW0QPGOaUc(Oxq_4Jb7Cu8c0S_BUDx0c9lIuSu3uzgeP"
+  filter = "!17vW0QPGOaUc(Oxq_4Jb7Cu8c0S_BUDx0c9lIuSu3uzgeP",
+  page = 1
 }) => {
   try {
     const {
@@ -15,11 +16,12 @@ export const fetchData = async ({
       ORDER_PARAMS,
       SORT_PARAMS,
       SITE_PARAMS,
-      FILTER_PARAMS
+      FILTER_PARAMS,
+      PAGE_NUMBER
     } = config;
 
     const response = await fetch(
-      `${API_PATH}${actionPath}?${ORDER_PARAMS}${order}&${SORT_PARAMS}${sort}&${SITE_PARAMS}${site}&${FILTER_PARAMS}${filter}&${
+      `${API_PATH}${actionPath}?${PAGE_NUMBER}${page}&${ORDER_PARAMS}${order}&${SORT_PARAMS}${sort}&${SITE_PARAMS}${site}&${FILTER_PARAMS}${filter}${
         query ? `&${INTITLE_PARAMS}${query}` : ""
       }`
     );
