@@ -23,9 +23,9 @@ export const store = createStore(
 store.subscribe(
   debounce(() => {
     saveState({
-      search: store.getState.search,
-      faqs: store.getState.faqs,
-      topQuestions: store.getState.topQuestions
+      search: store.getState().search,
+      faqs: store.getState().faqs,
+      topQuestions: store.getState().topQuestions
     });
   }, 1500)
 );
