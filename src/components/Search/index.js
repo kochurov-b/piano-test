@@ -18,14 +18,14 @@ export default () => {
   const handleSubmitForm = event => {
     event.preventDefault();
     setToResultSearch(true);
-    dispatch(getSearchData.request(inputSearch));
+    dispatch(getSearchData.request({ query: inputSearch }));
   };
 
   return (
     <>
       {toResultSearch && (
         <BootProcess fromLocation="search">
-          <Redirect to="/result" />
+          <Redirect to={`/result/${inputSearch}`} />
         </BootProcess>
       )}
 
