@@ -58,13 +58,13 @@ export default ({ bodyData, fromLocation }) => {
               <tr key={question_id.toString()} className="table__tr">
                 <td>
                   {fromLocation !== "search" ? (
-                    <span>{display_name}</span>
+                    <span>{display_name.trim()}</span>
                   ) : (
                     <Button
                       onClick={() => handleAuthor(user_id)}
                       className="button--author"
                     >
-                      {display_name}
+                      {display_name.trim()}
                     </Button>
                   )}
                 </td>
