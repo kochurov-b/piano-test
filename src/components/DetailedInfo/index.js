@@ -14,17 +14,9 @@ export default () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const { answers = [], title } = useSelector(state => {
-    const { search, faqs, topQuestions } = state;
-    const findInArray =
-      fromLocation === "search"
-        ? search.result
-        : fromLocation === "faqs"
-        ? faqs.result
-        : topQuestions.result;
-
-    return findInArray.find(item => item.question_id === +id);
-  });
+  const { answers = [], title } = useSelector(state =>
+    state[fromLocation].result.find(item => item.question_id === +id)
+  );
 
   return (
     <div className="answers">
