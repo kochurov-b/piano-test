@@ -5,7 +5,9 @@ import { CSSTransition } from "react-transition-group";
 import Notification from "../Notification";
 
 export default ({ children, fromLocation }) => {
-  const { loading, error } = useSelector(state => state[fromLocation]);
+  const { loading, error, result = [] } = useSelector(
+    state => state[fromLocation]
+  );
 
   return (
     <>
@@ -34,7 +36,20 @@ export default ({ children, fromLocation }) => {
       >
         <Notification name="Loading ..." className="notification--loading" />
       </CSSTransition>
-      {!error && !loading && <div>{children}</div>}
+      <CSSTransition
+        in={!loading && !error && result.length === 0}
+        appear
+        mountOnEnter
+        unmountOnExit
+        timeout={300}
+        classNames="slide-in"
+      >
+        <Notification
+          name={"No results were found for your request! Please, try again."}
+          className="notification--notice"
+        />
+      </CSSTransition>
+      {!error && !loading && result.length !== 0 && <div>{children}</div>}
     </>
   );
 };
