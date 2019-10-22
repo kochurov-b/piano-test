@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import Button from "../Button";
 import { getTopFaqs } from "../../store/actions/faqs";
@@ -114,23 +115,34 @@ export default ({ bodyData, fromLocation }) => {
         </tbody>
       </table>
 
-      {isOpenPanel && (
+      <TransitionGroup>
         <BootProcess fromLocation={locationInsideTable}>
           {result.length === 0 ? (
-            <Notification
-              name={`No results were found for your request! Try selecting a different ${
-                locationInsideTable === "faqs" ? "tag" : "author"
-              }.`}
-              className="notification--notice"
-            />
+            isOpenPanel && (
+              <Notification
+                name={`No results were found for your request! Try selecting a different ${
+                  locationInsideTable === "faqs" ? "tag" : "author"
+                }.`}
+                className="notification--notice"
+              />
+            )
           ) : (
-            <Modal modalClose={() => setIsOpenPanel(false)}>
-              <h2>Popular questions</h2>
-              <Table bodyData={result} fromLocation={locationInsideTable} />
-            </Modal>
+            <CSSTransition
+              in={isOpenPanel}
+              appear
+              mountOnEnter
+              unmountOnExit
+              timeout={300}
+              classNames="fade"
+            >
+              <Modal modalClose={() => setIsOpenPanel(false)}>
+                <h2>Popular questions</h2>
+                <Table bodyData={result} fromLocation={locationInsideTable} />
+              </Modal>
+            </CSSTransition>
           )}
         </BootProcess>
-      )}
+      </TransitionGroup>
     </>
   );
 };
