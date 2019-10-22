@@ -43,6 +43,7 @@ button:disabled {
 }
 
 .button--sort {
+  text-transform: uppercase;
   color: #9388ff;
   font-size: 14px;
   line-height: 19px;
