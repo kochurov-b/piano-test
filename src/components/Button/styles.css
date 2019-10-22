@@ -1,6 +1,8 @@
 button {
   cursor: pointer;
   transition: 0.12s;
+  background-color: transparent;
+  border: 0;
 }
 
 button:disabled {
@@ -31,13 +33,18 @@ button:disabled {
   font-size: 16px;
   line-height: 21px;
   letter-spacing: 0.2px;
-  border: 0;
   padding: 0;
-  background-color: transparent;
   transition: 0.12s;
 }
 
 .button--author:hover,
 .button--tag:hover {
   color: #37beb0;
+}
+
+.button--sort {
+  color: #9388ff;
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 600;
 }

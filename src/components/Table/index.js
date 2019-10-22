@@ -60,7 +60,10 @@ export default ({ bodyData, fromLocation }) => {
             <th>Author</th>
             <th>Theme</th>
             <th>
-              <Button onClick={() => sortBy("answer_count")}>
+              <Button
+                className="button--sort"
+                onClick={() => sortBy("answer_count")}
+              >
                 Number of responses
               </Button>
             </th>
