@@ -3,27 +3,48 @@
   padding: 30px 100px;
 }
 
-.fade-appear,
-.fade-enter {
+.fade-in-appear,
+.fade-in-enter {
   opacity: 0;
   z-index: 1;
   transform: translateY(+30px);
 }
 
-.fade-appear-active,
-.fade-enter.fade-enter-active {
+.fade-in-appear-active,
+.fade-in-enter.fade-in-enter-active {
   opacity: 1;
   transition: all 600ms ease-in-out;
   transform: translateY(0);
 }
 
-.fade-exit {
+.fade-in-exit {
   opacity: 1;
   transform: translateY(0);
 }
 
-.fade-exit.fade-exit-active {
+.fade-in-exit.fade-in-exit-active {
   opacity: 0;
   transform: translateY(-15px);
-  transition: all 200ms ease-in-out;
+  transition: all 150ms ease-in-out;
+}
+
+.fade-appear,
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-appear-active,
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: all 300ms ease-in-out;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: all 150ms ease-in-out;
 }

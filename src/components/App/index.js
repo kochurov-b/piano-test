@@ -18,7 +18,7 @@ export default () => {
         <CSSTransition
           key={location.key}
           timeout={{ enter: 600, exit: 200 }}
-          classNames="fade"
+          classNames="fade-in"
         >
           <Switch location={location}>
             <Route exact path="/" component={Search} />
