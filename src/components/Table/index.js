@@ -1,28 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
 
 import Button from "../Button";
 import { getTopFaqs } from "../../store/actions/faqs";
 import { getTopQuestions } from "../../store/actions/topQuestions";
-import BootProcess from "../BootProcess";
-import Modal from "../Modal";
-import Table from "../Table";
+import { SearchResultContext } from "../../utils/context";
 
 import "./styles.css";
 
 export default ({ fromLocation }) => {
   const { result = [] } = useSelector(state => state[fromLocation]);
 
-  const [isOpenPanel, setIsOpenPanel] = useState(false);
-  const [locationInsideTable, setLocationInsideTable] = useState("");
   const [data, setData] = useState(result);
   const [sortDirection, setSortDirection] = useState({
     answer_count: "desc"
   });
 
   const dispatch = useDispatch();
+  const { setLocationInsideTable } = useContext(SearchResultContext);
 
   useEffect(() => {
     setData(result);
@@ -30,13 +26,11 @@ export default ({ fromLocation }) => {
 
   const handleAuthor = id => {
     setLocationInsideTable("topQuestions");
-    setIsOpenPanel(true);
     dispatch(getTopQuestions.request(id));
   };
 
   const handleTag = event => {
     setLocationInsideTable("faqs");
-    setIsOpenPanel(true);
     dispatch(getTopFaqs.request(event.target.innerText));
   };
 
@@ -139,24 +133,6 @@ export default ({ fromLocation }) => {
           })}
         </tbody>
       </table>
-
-      {locationInsideTable && (
-        <BootProcess fromLocation={locationInsideTable}>
-          <CSSTransition
-            in={isOpenPanel}
-            appear
-            mountOnEnter
-            unmountOnExit
-            timeout={300}
-            classNames="fade"
-          >
-            <Modal modalClose={() => setIsOpenPanel(false)}>
-              <h2>Popular questions</h2>
-              <Table fromLocation={locationInsideTable} />
-            </Modal>
-          </CSSTransition>
-        </BootProcess>
-      )}
     </>
   );
 };
