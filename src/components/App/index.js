@@ -22,7 +22,7 @@ export default () => {
         >
           <Switch location={location}>
             <Route exact path="/" component={Search} />
-            <Route exact path="/search/q=:query" component={SearchResult} />
+            <Route path="/search/q=:query" component={SearchResult} />
             <Route path="/question/:id" component={DetailedInfo} />
           </Switch>
         </CSSTransition>
