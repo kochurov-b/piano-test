@@ -48,3 +48,25 @@
   opacity: 0;
   transition: all 150ms ease-in-out;
 }
+
+.slide-in-appear,
+.slide-in-enter {
+  z-index: 1;
+  transform: translateY(100%);
+}
+
+.slide-in-appear-active,
+.slide-in-enter.slide-in-enter-active {
+  transition: all 250ms ease-in-out;
+  transform: translateY(0);
+}
+
+.slide-in-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-in-exit.slide-in-exit-active {
+  transform: translateY(100%);
+  transition: all 250ms ease-in-out;
+}
