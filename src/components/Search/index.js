@@ -35,6 +35,7 @@ export default () => {
         <Form className="form--search" onSubmit={handleSubmitForm}>
           <Input
             type="text"
+            label="search"
             className="input--search"
             onChange={event => setInputSearch(event.target.value)}
             placeholder="Enter your question"
