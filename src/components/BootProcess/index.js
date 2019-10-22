@@ -1,18 +1,31 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { useSelector } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 
 import Notification from "../Notification";
+import { SearchResultContext } from "../../utils/context";
 
 export default ({ children, fromLocation }) => {
   const { loading, error, result = [] } = useSelector(
     state => state[fromLocation]
   );
+  const { setIsOpenPanel } = useContext(SearchResultContext);
+
+  useEffect(() => {
+    if (
+      fromLocation !== "search" &&
+      !loading &&
+      !error &&
+      result.length !== 0
+    ) {
+      setIsOpenPanel(true);
+    }
+  });
 
   return (
     <>
       <CSSTransition
-        in={error}
+        in={error ? true : false}
         appear
         mountOnEnter
         unmountOnExit
@@ -49,7 +62,7 @@ export default ({ children, fromLocation }) => {
           className="notification--notice"
         />
       </CSSTransition>
-      {!error && !loading && result.length !== 0 && <div>{children}</div>}
+      {!error && !loading && result.length !== 0 && <>{children}</>}
     </>
   );
 };
