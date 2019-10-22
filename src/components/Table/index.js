@@ -152,7 +152,7 @@ export default ({ bodyData, fromLocation }) => {
         />
       </CSSTransition>
 
-      {result.length !== 0 && (
+      {locationInsideTable && (
         <BootProcess fromLocation={locationInsideTable}>
           <CSSTransition
             in={isOpenPanel}
