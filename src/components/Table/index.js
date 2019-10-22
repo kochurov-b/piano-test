@@ -9,27 +9,24 @@ import { getTopQuestions } from "../../store/actions/topQuestions";
 import BootProcess from "../BootProcess";
 import Modal from "../Modal";
 import Table from "../Table";
-import Notification from "../Notification";
 
 import "./styles.css";
 
-export default ({ bodyData, fromLocation }) => {
+export default ({ fromLocation }) => {
+  const { result = [] } = useSelector(state => state[fromLocation]);
+
   const [isOpenPanel, setIsOpenPanel] = useState(false);
   const [locationInsideTable, setLocationInsideTable] = useState("");
-  const [data, setData] = useState(bodyData);
+  const [data, setData] = useState(result);
   const [sortDirection, setSortDirection] = useState({
     answer_count: "desc"
   });
 
-  const { loading, result = [] } = useSelector(
-    state => locationInsideTable && state[locationInsideTable]
-  );
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setData(bodyData);
-  }, [bodyData]);
+    setData(result);
+  }, [result]);
 
   const handleAuthor = id => {
     setLocationInsideTable("topQuestions");
@@ -143,22 +140,6 @@ export default ({ bodyData, fromLocation }) => {
         </tbody>
       </table>
 
-      <CSSTransition
-        in={isOpenPanel && !loading && result.length === 0}
-        appear
-        mountOnEnter
-        unmountOnExit
-        timeout={300}
-        classNames="slide-in"
-      >
-        <Notification
-          name={`No results were found for your request! Try selecting a different ${
-            locationInsideTable === "faqs" ? "tag" : "author"
-          }.`}
-          className="notification--notice"
-        />
-      </CSSTransition>
-
       {locationInsideTable && (
         <BootProcess fromLocation={locationInsideTable}>
           <CSSTransition
@@ -171,7 +152,7 @@ export default ({ bodyData, fromLocation }) => {
           >
             <Modal modalClose={() => setIsOpenPanel(false)}>
               <h2>Popular questions</h2>
-              <Table bodyData={result} fromLocation={locationInsideTable} />
+              <Table fromLocation={locationInsideTable} />
             </Modal>
           </CSSTransition>
         </BootProcess>
