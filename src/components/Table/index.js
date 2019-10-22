@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 
 import Button from "../Button";
 import { getTopFaqs } from "../../store/actions/faqs";
@@ -21,14 +21,14 @@ export default ({ bodyData, fromLocation }) => {
     answer_count: "desc"
   });
 
-  const { result = [] } = useSelector(state =>
-    locationInsideTable === "topQuestion" ? state.topQuestions : state.faqs
+  const { loading, result = [] } = useSelector(
+    state => locationInsideTable && state[locationInsideTable]
   );
 
   const dispatch = useDispatch();
 
   const handleAuthor = id => {
-    setLocationInsideTable("topQuestion");
+    setLocationInsideTable("topQuestions");
     setIsOpenPanel(true);
     dispatch(getTopQuestions.request(id));
   };
@@ -136,34 +136,39 @@ export default ({ bodyData, fromLocation }) => {
         </tbody>
       </table>
 
-      <TransitionGroup>
+      <CSSTransition
+        in={isOpenPanel && !loading && result.length === 0}
+        appear
+        mountOnEnter
+        unmountOnExit
+        timeout={300}
+        classNames="slide-in"
+      >
+        <Notification
+          name={`No results were found for your request! Try selecting a different ${
+            locationInsideTable === "faqs" ? "tag" : "author"
+          }.`}
+          className="notification--notice"
+        />
+      </CSSTransition>
+
+      {result.length !== 0 && (
         <BootProcess fromLocation={locationInsideTable}>
-          {result.length === 0 ? (
-            isOpenPanel && (
-              <Notification
-                name={`No results were found for your request! Try selecting a different ${
-                  locationInsideTable === "faqs" ? "tag" : "author"
-                }.`}
-                className="notification--notice"
-              />
-            )
-          ) : (
-            <CSSTransition
-              in={isOpenPanel}
-              appear
-              mountOnEnter
-              unmountOnExit
-              timeout={300}
-              classNames="fade"
-            >
-              <Modal modalClose={() => setIsOpenPanel(false)}>
-                <h2>Popular questions</h2>
-                <Table bodyData={result} fromLocation={locationInsideTable} />
-              </Modal>
-            </CSSTransition>
-          )}
+          <CSSTransition
+            in={isOpenPanel}
+            appear
+            mountOnEnter
+            unmountOnExit
+            timeout={300}
+            classNames="fade"
+          >
+            <Modal modalClose={() => setIsOpenPanel(false)}>
+              <h2>Popular questions</h2>
+              <Table bodyData={result} fromLocation={locationInsideTable} />
+            </Modal>
+          </CSSTransition>
         </BootProcess>
-      </TransitionGroup>
+      )}
     </>
   );
 };
