@@ -41,7 +41,7 @@ export default () => {
       </CSSTransition>
 
       <div className="search-result">
-        <h2>Search results</h2>
+        <h2>Search results - {query}</h2>
         {result.length !== 0 && (
           <div className="search-result__table">
             <Table bodyData={result} fromLocation="search" />
