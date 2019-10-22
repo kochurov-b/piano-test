@@ -24,27 +24,11 @@ export default () => {
 
   return (
     <>
-      <CSSTransition
-        in={result.length === 0}
-        appear
-        mountOnEnter
-        unmountOnExit
-        timeout={300}
-        classNames="slide-in"
-      >
-        <Notification
-          name="No results were found for your request!"
-          linkName="Please try again"
-          linkTo="/"
-          className="notification--notice"
-        />
-      </CSSTransition>
-
       <div className="search-result">
         <h2>Search results - {query}</h2>
         {result.length !== 0 && (
           <div className="search-result__table">
-            <Table bodyData={result} fromLocation="search" />
+            <Table fromLocation="search" />
           </div>
         )}
       </div>
