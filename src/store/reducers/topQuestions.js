@@ -1,6 +1,6 @@
 import { topQuestionsConstants } from "../constants/topQuestions";
 
-export default (state = { loading: false }, action) => {
+export default (state = { loading: false, result: [] }, action) => {
   switch (action.type) {
     case topQuestionsConstants.GET_TOP_QUESTIONS.REQUEST: {
       return { ...state, loading: true };
