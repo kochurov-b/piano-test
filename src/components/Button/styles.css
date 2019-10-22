@@ -3,6 +3,7 @@ button {
   transition: 0.12s;
   background-color: transparent;
   border: 0;
+  margin: 0;
 }
 
 button:disabled {
