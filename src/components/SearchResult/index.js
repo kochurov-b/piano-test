@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
 
 import Notification from "../Notification";
 import Table from "../Table";
@@ -23,16 +24,25 @@ export default () => {
 
   return (
     <>
+      <CSSTransition
+        in={result.length === 0}
+        appear
+        mountOnEnter
+        unmountOnExit
+        timeout={300}
+        classNames="slide-in"
+      >
+        <Notification
+          name="No results were found for your request!"
+          linkName="Please try again"
+          linkTo="/"
+          className="notification--notice"
+        />
+      </CSSTransition>
+
       <div className="search-result">
         <h2>Search results</h2>
-        {result.length === 0 ? (
-          <Notification
-            name="No results were found for your request!"
-            linkName="Please try again"
-            linkTo="/"
-            className="notification--notice"
-          />
-        ) : (
+        {result.length !== 0 && (
           <div className="search-result__table">
             <Table bodyData={result} fromLocation="search" />
           </div>
