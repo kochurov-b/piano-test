@@ -5,13 +5,7 @@ import { CSSTransition } from "react-transition-group";
 import Notification from "../Notification";
 
 export default ({ children, fromLocation }) => {
-  const { loading, error } = useSelector(state =>
-    fromLocation === "search"
-      ? state.search
-      : fromLocation === "faqs"
-      ? state.faqs
-      : state.topQuestions
-  );
+  const { loading, error } = useSelector(state => state[fromLocation]);
 
   return (
     <>
