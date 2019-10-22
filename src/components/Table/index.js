@@ -16,6 +16,10 @@ import "./styles.css";
 export default ({ bodyData, fromLocation }) => {
   const [isOpenPanel, setIsOpenPanel] = useState(false);
   const [locationInsideTable, setLocationInsideTable] = useState("");
+  const [data, setDate] = useState(bodyData);
+  const [sortDirection, setSortDirection] = useState({
+    answer_count: "desc"
+  });
 
   const { result = [] } = useSelector(state =>
     locationInsideTable === "topQuestion" ? state.topQuestions : state.faqs
@@ -35,6 +39,19 @@ export default ({ bodyData, fromLocation }) => {
     dispatch(getTopFaqs.request(event.target.innerText));
   };
 
+  const sortBy = key => {
+    setDate(data => [
+      ...data.sort((a, b) =>
+        sortDirection[key] === "desc" ? b[key] - a[key] : a[key] - b[key]
+      )
+    ]);
+
+    setSortDirection(direction => ({
+      ...direction,
+      [key]: direction[key] === "desc" ? "asc" : "desc"
+    }));
+  };
+
   return (
     <>
       <table>
@@ -42,12 +59,16 @@ export default ({ bodyData, fromLocation }) => {
           <tr>
             <th>Author</th>
             <th>Theme</th>
-            <th>Number of responses</th>
+            <th>
+              <Button onClick={() => sortBy("answer_count")}>
+                Number of responses
+              </Button>
+            </th>
             <th>Tags</th>
           </tr>
         </thead>
         <tbody>
-          {bodyData.map(item => {
+          {data.map(item => {
             const {
               owner: { display_name, user_id },
               question_id,
