@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
@@ -16,7 +16,7 @@ import "./styles.css";
 export default ({ bodyData, fromLocation }) => {
   const [isOpenPanel, setIsOpenPanel] = useState(false);
   const [locationInsideTable, setLocationInsideTable] = useState("");
-  const [data, setDate] = useState(bodyData);
+  const [data, setData] = useState(bodyData);
   const [sortDirection, setSortDirection] = useState({
     answer_count: "desc"
   });
@@ -26,6 +26,10 @@ export default ({ bodyData, fromLocation }) => {
   );
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setData(bodyData);
+  }, [bodyData]);
 
   const handleAuthor = id => {
     setLocationInsideTable("topQuestions");
@@ -40,7 +44,7 @@ export default ({ bodyData, fromLocation }) => {
   };
 
   const sortBy = key => {
-    setDate(data => [
+    setData(data => [
       ...data.sort((a, b) =>
         sortDirection[key] === "desc" ? b[key] - a[key] : a[key] - b[key]
       )
