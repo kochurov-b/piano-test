@@ -5,10 +5,10 @@ import { CSSTransition } from "react-transition-group";
 
 import Notification from "../Notification";
 import Table from "../Table";
-
-import "./styles.css";
 import { useInfiniteScroll } from "../../hooks";
 import { getSearchData } from "../../store/actions/search";
+
+import "./styles.css";
 
 export default () => {
   const { result = [], has_more } = useSelector(state => state.search);
