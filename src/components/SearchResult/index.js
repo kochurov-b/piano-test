@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
 
-import Notification from "../Notification";
 import Table from "../Table";
 import { useInfiniteScroll } from "../../hooks";
 import { getSearchData } from "../../store/actions/search";
