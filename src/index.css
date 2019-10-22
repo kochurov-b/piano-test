@@ -65,3 +65,7 @@ h1 {
 h2 {
   margin-bottom: 30px;
 }
+
+form label {
+  width: 100%;
+}
