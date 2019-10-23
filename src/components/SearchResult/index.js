@@ -30,6 +30,13 @@ export default () => {
       dispatch(getSearchData.request({ query, page: count }));
   });
 
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow === "hidden" &&
+        (document.body.style.overflow = "visible");
+    };
+  }, []);
+
   return (
     <>
       <SearchResultContext.Provider
